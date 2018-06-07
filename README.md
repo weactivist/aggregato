@@ -4,7 +4,9 @@ This project is work in progress. Check back later or contribute.
 
 ## Setup
 $ cp .env-example .env
+
 $ cd app/
+
 $ npm install
 
 ## Run
@@ -22,4 +24,5 @@ $ docker up aggregato
 
 ## Build CSS
 $ cd app/
+
 $ npm run sass
