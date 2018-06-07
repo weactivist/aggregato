@@ -1,5 +1,12 @@
-#Build
+This project is work in progress. Check back later or contribute.
+
+## Run development environment
+$ docker-compose up
+
+## Production
+
+### Build
 $ docker build -t aggregato ./
 
-# Run
+### Run
 $ docker up aggregato
