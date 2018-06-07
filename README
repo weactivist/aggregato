@@ -1,0 +1,5 @@
+#Build
+$ docker build -t aggregato ./
+
+# Run
+$ docker up aggregato
