@@ -12,14 +12,6 @@ $ npm install
 ## Run
 $ docker-compose up
 
-# Production
-
-## Build
-$ docker build -t aggregato ./
-
-## Run
-$ docker up aggregato
-
 # Contribute
 
 ## Build CSS
