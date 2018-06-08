@@ -3,10 +3,18 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const mongoose = require('mongoose');
+const CronJob = require('cron').CronJob;
+const Item = require('./models/item.js');
 const controller = require('./controller.js');
+const config = require('./config/app.js');
+const Import = require('./import.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
+
+new Import();
+
+new CronJob(config.cron, function() {}, null, true, config.timezone);
 
 let app = express();
 

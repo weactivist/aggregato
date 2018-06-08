@@ -2,7 +2,7 @@
 
 module.exports = [
     {
-        name: 'Github',
-        url: 'https://github.com/feed'
+        name: 'TechCrunch',
+        url: 'https://techcrunch.com/feed/'
     }
 ];
