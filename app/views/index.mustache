@@ -6,11 +6,21 @@
                     <div class="card">
                         <div class="card-body col p-0">
                             <h4 class="card-title p-3 m-0">{{title}}</h4>
-                            <img src="https://placehold.it/250x200" alt="{{title}}" class="card-img-top rounded-0" />
-                            <p class="card-text px-3 pt-3 m-0">{{summary}}</p>
-                            <a href="{{link}}" target="_blank" class="btn btn-link btn-sm p-3">Continue reading</a>
+                            {{#image}}
+                                <img src="{{image}}" alt="{{title}}" class="card-img-top rounded-0" />
+                            {{/image}}
+                            <p class="card-text p-3 m-0">{{{summary}}}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{#formatDate}}{{published}}{{/formatDate}}
+                            <a href="{{link}}" target="_blank" class="btn btn-link btn-sm p-0 float-right">Continue reading &rarr;</a>
                         </div>
                     </div>
+                </div>
+            {{/items}}
+            {{^items}}
+                <div class="col">
+                    <div class="alert alert-info">Waiting for feeds to parse...</div>
                 </div>
             {{/items}}
         </div>

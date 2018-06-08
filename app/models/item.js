@@ -21,8 +21,11 @@ var ItemSchema = new Schema({
         required: true
     },
     published: {
-        type: String,
+        type: Number,
         required: true
+    },
+    image: {
+        type: String
     },
     guid: {
         type: String,

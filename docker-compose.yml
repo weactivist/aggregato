@@ -18,3 +18,13 @@ services:
         env_file: .env
         volumes:
             - ./data/db:/data/db
+    mongoexpress:
+        image: mongo-express
+        env_file: .env
+        restart: on-failure
+        depends_on:
+            - mongo
+        links:
+            - mongo
+        ports:
+            - "8081:8081"

@@ -2,6 +2,7 @@ const FeedParser = require('feedparser');
 const request = require('request');
 const feeds = require('./config/feeds.js');
 const sha1 = require('sha1');
+const striptags = require('striptags');
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 
@@ -40,13 +41,24 @@ module.exports = function() {
                 }
 
                 let guid = sha1(item.guid);
+                let matches = item.description.match(/<img.+?src=\"([^"]+)\"/);
+                var img = '';
+
+                if(item.image.hasOwnProperty('url')) {
+                    console.log(item.image);
+                    img = item.image.url;
+                }
+                else if(matches) {
+                    img = matches[1];
+                }
 
                 let feedItem = new Item({
-                    title: item.title,
-                    description: item.description,
-                    summary: item.summary,
+                    title: striptags(item.title),
+                    description: striptags(item.description),
+                    summary: striptags(item.summary),
                     link: item.link,
-                    published: item.pubDate,
+                    published: Date.parse(item.pubDate),
+                    image: img,
                     guid: item.guid
                 });
 
@@ -54,7 +66,7 @@ module.exports = function() {
 
                 delete upsertData._id;
 
-                Item.update({_id: feedItem._id}, upsertData, {upsert: true}, function(error) {
+                Item.update({guid: feedItem.guid}, upsertData, {upsert: true}, function(error) {
                     if(error) {
                         console.log(error);
                     }

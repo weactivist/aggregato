@@ -2,5 +2,6 @@
 
 module.exports = {
     timezone: 'Europe/Stockholm',
-    cron: '* * * * * *'
+    cron: '* * * * * *',
+    limit: 24
 };
