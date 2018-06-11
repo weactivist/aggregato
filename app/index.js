@@ -12,6 +12,8 @@ const Import = require('./import.js');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
+new Import();
+
 new CronJob(config.cron, function() {
     new Import();
 }, null, true, config.timezone);

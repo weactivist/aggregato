@@ -45,7 +45,6 @@ module.exports = function() {
                 var img = '';
 
                 if(item.image.hasOwnProperty('url')) {
-                    console.log(item.image);
                     img = item.image.url;
                 }
                 else if(matches) {
@@ -59,14 +58,14 @@ module.exports = function() {
                     link: item.link,
                     published: Date.parse(item.pubDate),
                     image: img,
-                    guid: item.guid
+                    guid: guid
                 });
 
                 let upsertData = feedItem.toObject();
 
                 delete upsertData._id;
 
-                Item.update({guid: feedItem.guid}, upsertData, {upsert: true}, function(error) {
+                Item.update({guid: guid}, upsertData, {upsert: true}, function(error) {
                     if(error) {
                         console.log(error);
                     }
