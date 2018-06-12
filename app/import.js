@@ -1,14 +1,15 @@
 const FeedParser = require('feedparser');
 const request = require('request');
-const feeds = require('./config/feeds.js');
 const sha1 = require('sha1');
 const striptags = require('striptags');
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 
 module.exports = function() {
+    let feeds = process.env.FEEDS.split(' ');
+
     feeds.forEach(feed => {
-        let req = request(feed.url);
+        let req = request(feed);
         let feedparser = new FeedParser();
 
         req.on('error', function(error){

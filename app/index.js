@@ -6,17 +6,18 @@ const mongoose = require('mongoose');
 const CronJob = require('cron').CronJob;
 const Item = require('./models/item.js');
 const controller = require('./controller.js');
-const config = require('./config/app.js');
 const Import = require('./import.js');
+const cron = process.env.CRON;
+const timezone = process.env.TIMEZONE;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 new Import();
 
-new CronJob(config.cron, function() {
+new CronJob(cron, function() {
     new Import();
-}, null, true, config.timezone);
+}, null, true, timezone);
 
 let app = express();
 
