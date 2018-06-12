@@ -18,21 +18,41 @@ var ItemSchema = new Schema({
     },
     link: {
         type: String,
-        required: true
+        validate: {
+            validator: function(v) {
+                if(!v) {
+                    return false;
+                }
+
+                return /^https?:\/\//.test(v);
+            },
+            message: '{VALUE} is not a valid URL!'
+        }
     },
     published: {
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
     image: {
-        type: String
+        type: String,
+        validate: {
+            validator: function(v) {
+                if(!v) {
+                    return true;
+                }
+
+                return /^https?:\/\//.test(v);
+            },
+            message: '{VALUE} is not a valid image URL!'
+        }
     },
     guid: {
         type: String,
         validate: {
             validator: function(v) {
                 if(!v) {
-                    return true;
+                    return false;
                 }
 
                 return /^[a-zA-Z0-9]{40}$/.test(v);
