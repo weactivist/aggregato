@@ -11,6 +11,7 @@ This simple app displays content from a number of feeds from your preferences an
 * __TIMEZONE__: Timezone to display dates. Default: `Europe/Stockholm`
 * __CRON__: How often to fetch new feed items. Defaults to every 15 mins. Default: `*/15 * * * *`
 * __LIMIT__: Limit the number of items displayed on front page. Default: `24`
+* __TITLE__: Page title. Default: `Aggregato`
 
 # Development
 
